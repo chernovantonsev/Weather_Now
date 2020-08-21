@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Weather Now</string>
+    <string name="permission_granted">Разрешение получено</string>
+    <string name="permission_not_granted">Разрешение не получено</string>
+    <string name="to_continue_need_permission_location">Для корректной работы приложения необходимо получить разрешение на получение данных о местоположении</string>
+    <string name="good">Хорошо</string>
+    <string name="cancel">Отмена</string>
+    <string name="action_update">Обновить</string>
+    <string name="format_temperature">%.0f °C</string>
+    <string name="format_temperature_feel">По ощущениям %.2f °C</string>
+
+
 </resources>
