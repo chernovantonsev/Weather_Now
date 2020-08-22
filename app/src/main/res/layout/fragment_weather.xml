@@ -35,6 +35,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
 
@@ -47,7 +48,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="16dp"
+                    android:padding="@dimen/standard_margin"
                     android:text="@{viewModel.weatherData.name}"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -59,7 +60,7 @@
 
                 <ImageView
                     android:id="@+id/iv_weather"
-                    android:layout_width="100dp"
+                    android:layout_width="@dimen/weather_type_icon_size"
                     android:layout_height="0dp"
                     app:imageFromUri="@{viewModel.weatherData.getWeatherIconPath()}"
                     app:layout_constraintDimensionRatio="1"
@@ -74,7 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="16dp"
+                    android:padding="@dimen/standard_margin"
                     android:text="@{@string/format_temperature(viewModel.weatherData.main.temp)}"
                     android:textSize="42sp"
                     android:textStyle="bold"
@@ -103,6 +104,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
+                    android:paddingStart="@dimen/standard_margin"
+                    android:paddingEnd="@dimen/standard_margin"
                     android:text="@{viewModel.weatherData.getWeatherInfo().description}"
                     android:textAllCaps="true"
                     android:textSize="24sp"
@@ -113,9 +116,111 @@
                     tools:text="Облачно" />
 
 
+                <TextView
+                    android:id="@+id/tv_direction_north"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:gravity="center"
+                    android:padding="@dimen/standard_margin"
+                    android:text="@string/north"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_temperature_precipitation" />
+
+
+                <ImageView
+                    android:id="@+id/iv_wind_direction"
+                    android:layout_width="@dimen/wind_direction_icon_size"
+                    android:layout_height="0dp"
+                    android:rotation="@{Math.round(viewModel.weatherData.wind.deg)}"
+                    android:src="@drawable/ic_arrow_upward"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_direction_north" />
+
+
+                <TextView
+                    android:id="@+id/tv_direction_west"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:padding="@dimen/standard_margin"
+                    android:text="@string/west"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_wind_direction"
+                    app:layout_constraintEnd_toStartOf="@id/iv_wind_direction"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_wind_direction" />
+
+
+                <TextView
+                    android:id="@+id/tv_direction_east"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:padding="@dimen/standard_margin"
+                    android:text="@string/east"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_wind_direction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_wind_direction"
+                    app:layout_constraintTop_toTopOf="@id/iv_wind_direction" />
+
+                <TextView
+                    android:id="@+id/tv_direction_south"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/standard_margin"
+                    android:text="@string/south"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_wind_direction" />
+
+                <TextView
+                    android:id="@+id/tv_wind_speed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/standard_margin"
+                    android:text="@{@string/format_wind_speed(viewModel.weatherData.wind.speed)}"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_direction_south"
+                    tools:text="Скорость ветра 2 м/с" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+
+        <ProgressBar
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:isGone="@{!viewModel.progress}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"
+            android:isGone="@{!viewModel.progress}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,13 +11,22 @@ class WeatherViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : BaseViewModel() {
 
-
     val weatherData: LiveData<WeatherData> =
         LiveDataReactiveStreams.fromPublisher(repository.weatherData)
 
+    val isNeedUpdateLocationSetting: LiveData<Boolean> =
+        LiveDataReactiveStreams.fromPublisher(repository.isNeedUpdateLocationSetting)
+
+    val progress = repository.progress
+
+    val errorMessage = repository.errorMessage
 
     fun updateData() {
         repository.updateWeatherData()
+    }
+
+    fun inverseLocationPreferenceValue() {
+        repository.inverseLocationPreferenceValue()
     }
 
 }

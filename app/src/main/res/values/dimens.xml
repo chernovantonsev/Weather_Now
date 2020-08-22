@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weather_type_icon_size">80dp</dimen>
+    <dimen name="wind_direction_icon_size">64dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+</resources>

@@ -8,6 +8,15 @@
     <string name="action_update">Обновить</string>
     <string name="format_temperature">%.0f °C</string>
     <string name="format_temperature_feel">По ощущениям %.2f °C</string>
+    <string name="format_wind_speed">Скорость ветра: %.1f м/с</string>
+    <string name="north">С</string>
+    <string name="south">Ю</string>
+    <string name="west">З</string>
+    <string name="east">В</string>
+    <string name="error_while_update">Ошибка при обновлении</string>
+    <string name="error_no_connection">Нет подключения к интернету</string>
+    <string name="error_no_gps">Нет данных о текущем местоположении</string>
+    <string name="action_is_need_update_location">Обновление местоположения</string>
 
 
 </resources>
